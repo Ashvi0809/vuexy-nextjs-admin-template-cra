@@ -1,0 +1,101 @@
+---
+id: fakedb
+title: FakeDB
+sidebar_label: FakeDB
+slug: /development/fakedb
+---
+
+import { Alert } from 'reactstrap'
+
+<p>Vuexy Admin is built using FakeDB to mock the real life application functionalities</p>
+
+### Setup
+
+---
+
+If you're using the starter-kit you'll have to manually setup the fake-db.
+
+<p>
+  1. First create a folder with name <code>fake-db</code> and create a <code>mock.js</code> file inside it.
+</p>
+<p>
+  2. Initialize the{' '}
+  <a href='https://github.com/ctimmerm/axios-mock-adapter#readme' target='_blank'>
+    axios-mock-adapter
+  </a>{' '}
+  in <code>mock.js</code>
+</p>
+
+```js
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter'
+
+const mock = new MockAdapter(axios)
+
+export default mock
+```
+
+<p className='mt-3'>
+  3. Create a <code>index.js</code> file in <code>fake-db</code> folder & add the following:
+</p>
+
+```js
+import mock from './mock'
+
+mock.onAny().passThrough()
+```
+
+<p className='mt-3'>
+  4. To initialize your fake data create a js file in <code>fake-db</code>. Import mock and use it like this:
+</p>
+
+```js
+import mock from '../mock'
+
+const data = [{...}]
+
+mock.onGet('/url/get-data').reply(config => {
+  return [200, data]
+})
+```
+
+<p className='mt-3'>
+  5. Import the above created file in <code>fake-db/index.js</code>:
+</p>
+
+```js
+import mock from './mock'
+
+import './FILE_WITH_DATA'
+
+mock.onAny().passThrough()
+```
+
+<p className='mt-3'>
+  6. Import your <code>fake-db/index.js</code> in <code>src/index.js</code> to be able to get your data in your app.
+</p>
+
+<p>7. Finally, use axios to fetch your data from fake-db</p>
+
+```js
+import { useState, useEffect } from 'react'
+
+import axios from 'axios'
+
+const Component = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    axios.get('/url/get-data').then(response => setData(response.data))
+  }, [])
+
+  return <h1>Component</h1>
+}
+```
+
+<Alert className='mt-4' color='warning'>
+  <h4 className='alert-heading'>Warning</h4>
+  <div className='alert-body'>
+    We have used the fake-db for demo purposes only. fake-db will not work for the real life applications.
+  </div>
+</Alert>

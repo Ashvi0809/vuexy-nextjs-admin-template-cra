@@ -1,0 +1,148 @@
+---
+id: installation
+title: Installation
+sidebar_label: Installation
+slug: /development/installation
+---
+
+import { Alert } from 'reactstrap'
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+<p>
+  Vuexy Admin is built using{' '}
+  <a href='https://create-react-app.dev/' target='_blank'>
+    CRA
+  </a>
+  . CRA is nicely documented to start. You don't need to install or configure tools like Webpack or Babel. They are preconfigured
+  and hidden so that you can focus on the code.
+</p>
+
+### Guide
+
+---
+
+<p>
+  First of all, make sure you have installed{' '}
+  <a href='https://nodejs.org/en/' target='_blank'>
+    Node
+  </a>{' '}
+  and{' '}
+  <a href='https://www.npmjs.com/' target='_blank'>
+    npm
+  </a>{' '}
+  /{' '}
+  <a href='https://yarnpkg.com/' target='_blank'>
+    yarn
+  </a>
+</p>
+<Alert className='my-4' color='success'>
+  <h4 className='alert-heading'>Tip</h4>
+  <div className='alert-body'>Yarn package manager is recommended</div>
+</Alert>
+<Alert color='warning'>
+  <h4 className='alert-heading'>Warning</h4>
+  <div className='alert-body'>
+   Please make sure you use the node’s LTS version which is recommended by the official node site and not the one with the latest features or previous versions.
+   Our project is not tested wot work with other Node versions.
+  </div>
+</Alert>
+<Alert color='danger'>
+  <h4 className='alert-heading'>Important</h4>
+  <div className='alert-body'>
+   Before installing the node_modules make sure you have files starting with a dot(.eslintrc).
+   It mostly happens when hidden files are not enabled and you try to copy our template at some other place on your system.
+  </div>
+</Alert>
+<Alert color='danger'>
+  <h4 className='alert-heading'>Important</h4>
+  <div className='alert-body'>
+    If you decide to use <strong>npm</strong>. Make sure you use following command:{' '}
+    <strong>npm install --force --legacy-peer-deps</strong>
+  </div>
+</Alert>
+<ul className='mb-3'>
+  <li>After downloading zip from ThemeForest, unzip it in your desired location.</li>
+  <li>
+    In uncompressed folder you will find folder named <code>vuexy-admin-vX.X.X</code>. This will contain all versions of
+    Vuexy Template. Move to <code>react-version</code> folder and open this folder in console / terminal.
+  </li>
+  <li>Run below command in console:</li>
+</ul>
+
+```bash
+# For Yarn (Highly Recommended)
+yarn
+
+# For npm
+npm install --force --legacy-peer-deps
+```
+
+<Alert className='my-4' color='success'>
+  <h4 className='alert-heading'>Tip</h4>
+  <div className='alert-body'>
+    If you have any issues regarding installation please search your issue in our{' '}
+    <a className='alert-link' href='/faq'>
+      FAQ
+    </a>{' '}
+    section for instant solution and still you can't find solution, please follow our guide on{' '}
+    <a className='alert-link' href='/docs/getting-started/getting-support'>
+      getting support
+    </a>{' '}
+    for our product.
+  </div>
+</Alert>
+
+<ul className='mb-3'>
+  <li>Now to run development server of Vuexy, run below command:</li>
+</ul>
+
+```bash
+# For Yarn
+yarn start
+
+# For npm
+npm run start
+```
+
+<ul className='my-3'>
+  <li>
+    Now you will find some output after running above command in console as below:
+    <img className='rounded my-2' src={useBaseUrl('img/server-console.png')} width='500' />
+  </li>
+  <li>
+    Visit{' '}
+    <a href='http://localhost:3000/' target='_blank'>
+      http://localhost:3000/
+    </a>{' '}
+    to check frontend.
+  </li>
+</ul>
+
+<Alert className='my-3' color='success'>
+  <h4 className='alert-heading'>Note</h4>
+  <div className='alert-body'>
+    Your network URL might not have the same URL as the screenshot and that is completely fine. It depends on your
+    network.
+  </div>
+</Alert>
+
+<Alert className='my-3' color='warning'>
+  <h4 className='alert-heading'>Warning</h4>
+  <div className='alert-body'>
+    If you have another process running at port <code>3000</code> then you might have some other URL (PORT) that
+    screenshot.
+  </div>
+</Alert>
+
+### Resolve installation and npm run serve issue
+
+---
+
+<p>
+  We already listed common installation errors which you may encounter. To find your issue all you have to do is find
+  the term in your console's output that looks like an error. Search this terms in our{' '}
+  <a className='alert-link' href='/faq'>
+    FAQ
+  </a>{' '}
+  section and hopefully you will get your solution.
+</p>

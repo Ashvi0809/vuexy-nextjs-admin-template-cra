@@ -1,0 +1,51 @@
+---
+title: How to logout user on token expiration
+tags: [auth, user, logout]
+description: logout user on token expiration.
+hide_table_of_contents: true
+---
+
+You might want to logout a user when the access token expires.
+Here's how you can achieve that.
+
+1. <p>Copy <strong>PrivateRoute.js</strong> somewhere out of <strong>@core</strong> folder.</p>
+2. <p>Replace the PrivateRoute import in <strong>src/router/routes</strong> with yours.</p>
+3. <p>Open the copied <strong>PrivateRoute.js</strong>.</p>
+4. <p>Import jwt:</p>
+
+```jsx
+// ** JWT Imports
+import jwt from 'jsonwebtoken'
+```
+5. <p>Create a <strong>isTokenExpired</strong> function with modifications according to your structure:</p>
+
+```jsx
+const isTokenExpired = token => {
+  if (token) {
+    return jwt.verify(token, 'SECRET', (err, decoded) => {
+      return !Boolean(decoded)
+    })
+  } else {
+    return true
+  }
+}
+```
+
+6. <p>In PrivateRoute component add the following statement just above <strong>route.meta</strong> condition</p>
+
+```jsx
+if (isTokenExpired(accessToken) {
+    yourLogoutFunction()
+    return <Navigate to='/login' />
+}
+```
+
+7. If you're using redux store to logout you'll have to use the if statement on <strong>point 6</strong> inside a <strong>useEffect</strong> else you'll get rendering console errors.
+
+```jsx
+useEffect(() => {
+  if (user && isTokenExpired(localStorage.getItem(jwtDefaultConfig.storageTokenKeyName))) {
+    dispatch(handleLogout())
+  }
+}, [])
+```

@@ -1,0 +1,139 @@
+---
+title: How to add i18n in starter kit
+tags: [i18n, translation]
+description: Adding Internationalization in Starter Kit.
+hide_table_of_contents: true
+---
+
+### Steps
+
+<p>Follow below mentioned steps to add internationalization in starter-kit:</p>
+
+<ul className='pl-3'>
+  <li>
+    <p>
+      First step is to add the text to translate in <code>public/assets/data/locales</code>
+    </p>
+  </li>
+</ul>
+
+```json title="fr.json"
+{
+  "Dashboard": "Tableau de bord"
+}
+```
+
+<ul className='pl-3 mt-4'>
+  <li>
+    <p className='mb-0'>
+      Copy the i18n config from the <code>full-version/src/configs/i18n</code> to <code>starter-kit/src/configs</code>
+    </p>
+    <p className='my-2'>
+      Import your config in <code>src/index.js</code>.
+    </p>
+  </li>
+</ul>
+
+<ul className='pl-3 mt-4'>
+  <li>
+    <p>
+      You can now use <code>i18n.changeLanguage</code> from anywhere in your app to change language.
+    </p>
+  </li>
+</ul>
+
+```jsx
+// ** Third Party Components
+import { useTranslation } from 'react-i18next'
+
+const Component = () => {
+  // ** Hooks
+  const { i18n } = useTranslation()
+
+  return <Button onClick={() => i18n.changeLanguage('fr')}>Change Language</Button>
+}
+```
+
+<ul className='pl-3 mt-4'>
+  <li>
+    <p>Now only thing remains is to display changed language text.</p>
+  </li>
+</ul>
+
+```jsx
+// ** Third Party Components
+import { useTranslation } from 'react-i18next'
+
+const Component = () => {
+  // ** Hooks
+  const { t } = useTranslation()
+
+  return <p>{t('Colors')}</p>
+}
+```
+
+### Adding Intl in sidebar
+
+<p>Please follow these steps to add intl in sidebar:</p>
+
+<ul className='pl-3'>
+  <li>
+    Add your menu translations in <code>public/assets/data/locale</code>
+  </li>
+  <li>
+    Navigate to <code>src/@core/layouts/components/menu</code>
+  </li>
+  <li>
+    Copy <code>vertical-menu/VerticalNavMenuLink.js</code> & <code>vertical-menu/VerticalNavMenuGroup.js</code> &
+    replace these files in starter-kit in the path same as first step.
+  </li>
+  <li>
+    Copy <code>horizontal-menu/HorizontalNavMenuLink.js</code> & <code>horizontal-menu/HorizontalNavMenuGroup.js</code>{' '}
+    & replace these files in starter-kit in the path same as first step.
+  </li>
+</ul>
+
+### Full Example
+
+```jsx
+// ** Third Party Components
+import { useTranslation } from 'react-i18next'
+
+// ** Reactstrap Components
+import { Button, Card, CardHeader, CardBody, CardTitle } from 'reactstrap'
+
+const Home = () => {
+  // ** Hooks
+  const { t, i18n } = useTranslation()
+
+  // ** Function to switch Language
+  const handleLangUpdate = lang => {
+    i18n.changeLanguage(lang)
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Kick start your project 🚀</CardTitle>
+      </CardHeader>
+      <CardBody>
+        <p>{t(item.title)}</p>
+        <Button className='mr-1' color='primary' onClick={() => handleLangUpdate('en')}>
+          En
+        </Button>
+        <Button className='mr-1' color='primary' onClick={() => handleLangUpdate('fr')}>
+          Fr
+        </Button>
+        <Button className='mr-1' color='primary' onClick={() => handleLangUpdate('de')}>
+          De
+        </Button>
+        <Button color='primary' onClick={() => handleLangUpdate('pt')}>
+          Pt
+        </Button>
+      </CardBody>
+    </Card>
+  )
+}
+
+export default Home
+```

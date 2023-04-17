@@ -1,0 +1,30 @@
+---
+title: How to render layout based on user role
+tags: [layout, user]
+description: Dynamic Layout
+hide_table_of_contents: true
+---
+
+You can have a different layout based on user role or any other property.
+
+In this article we're using user role to change layout to `horizontal`.
+It is really simple all you need to do is check for user role in `useEffect`.
+
+Here are the steps to achieve this:
+
+1. Open `src/utility/hooks/useLayout.js`
+2. add a useEffect a like shown below:
+```jsx
+useEffect(() => {
+    if (window.localStorage.getItem('userData') && window.innerWidth >= breakpoint) {
+    const userData = JSON.parse(window.localStorage.getItem('userData'))
+    if (userData.role === 'client') {
+        dispatch(handleLayout('horizontal'))
+        dispatch(handleLastLayout('horizontal'))
+    } else {
+        dispatch(handleLayout('vertical'))
+        dispatch(handleLastLayout('vertical'))
+    }
+    }
+}, [])
+```

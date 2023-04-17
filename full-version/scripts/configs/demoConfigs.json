@@ -1,0 +1,19 @@
+{
+  "demo-1": {},
+  "demo-2": {
+    "isCollapsed": true
+  },
+  "demo-3": {
+    "skin": "bordered"
+  },
+  "demo-4": {
+    "skin": "dark"
+  },
+  "demo-5": {
+    "type": "horizontal"
+  },
+  "demo-6": {
+    "skin": "dark",
+    "type": "horizontal"
+  }
+}

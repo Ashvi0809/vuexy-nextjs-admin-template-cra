@@ -1,0 +1,71 @@
+---
+title: How to migrate from Router V5 to V6
+tags: [router, migration]
+description: Migration to V6
+hide_table_of_contents: true
+---
+
+import { Alert } from 'reactstrap'
+
+<Alert className='mt-4' color='info'>
+  <h4 className='alert-heading'>info</h4>
+  <div className='alert-body'>
+    The migration guide is for the starter-kit.
+  </div>
+</Alert>
+
+<Alert className='mt-4' color='danger'>
+  <h4 className='alert-heading'>Important</h4>
+  <div className='alert-body'>
+    We've removed the Toastr in favour of React Hot Toast.
+    You can use either one it totally depends upon you.
+    But, you'll have to install the Toastr again as it is remove from the <strong>package.json</strong> file
+  </div>
+</Alert>
+
+<Alert className='mt-4' color='danger'>
+  <h4 className='alert-heading'>Important</h4>
+  <div className='alert-body'>
+   You'll have to update the <strong>src/router/routes</strong> according to your <strong>views</strong> folder.
+   You can refer the <strong>full-version/src/router/routes</strong> folder for more info.
+  </div>
+</Alert>
+
+### Steps
+<ul className='pl-3'>
+  <li>
+    <p>
+      Replace the <strong>@core</strong> folder with the new version's <strong>@core</strong> folder.
+    </p>
+  </li>
+  <li>
+    <p>
+      Replace the <strong>layouts</strong> folder with the new version's <strong>layouts</strong> folder.
+    </p>
+  </li>
+  <li>
+    <p>
+      Replace the <strong>themeConfig.js</strong> file with the new version's <strong>themeConfig.js</strong> file.
+    </p>
+  </li>
+  <li>
+    <p>
+      Replace the <strong>router</strong> folder with the new version's <strong>router</strong> folder.
+    </p>
+  </li>
+  <li>
+    <p>
+      Replace the <strong>App.js</strong> file with the new version's <strong>App.js</strong> file.
+    </p>
+  </li>
+  <li>
+    <p>
+      Replace the <strong>index.js</strong> file with the new version's <strong>index.js</strong> file.
+    </p>
+  </li>
+  <li>
+    <p>
+      Replace the <strong>package.json</strong> file with the new version's <strong>package.json</strong> file.
+    </p>
+  </li>
+</ul>

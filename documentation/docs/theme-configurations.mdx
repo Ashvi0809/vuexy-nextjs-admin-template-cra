@@ -1,0 +1,157 @@
+---
+id: theme-configurations
+title: Theme Configurations
+sidebar_label: Theme Configurations
+slug: /development/theme-configurations
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+<p>
+  Change template to fit your needs. To configure template we will use <code>themeConfig.js</code> file, which has all
+  template configurations listed with their valid values.
+</p>
+
+### Using themeConfig.js
+
+---
+
+<p>
+  <code>themeConfig.js</code> This is the file where you can update template behavior.
+</p>
+
+<p className='mb-5'>
+  <code>themeConfig.js</code> object options and it's valid values are already listed there. Just changed configuration
+  as your requirement and you are done.
+</p>
+
+### Changing App Name & Logo
+
+<p>
+  To change your App name & logo open <code>themeConfig.js</code> and change <code>appName</code> &{' '}
+  <code>appLogoImage</code> properties.
+</p>
+
+```js
+const themeConfig = {
+  app: {
+    appName: 'Vuexy',
+    appLogoImage: require('@src/assets/images/logo/logo.svg').default
+  },
+  ...
+}
+export default themeConfig
+```
+
+### Changing Direction
+
+<p>
+  To change App's direction open <code>themeConfig.js</code> and change <code>isRTL</code> property.
+</p>
+
+```js
+const themeConfig = {
+  app: {
+    appName: 'Vuexy',
+    appLogoImage: require('@src/assets/images/logo/logo.svg').default
+  },
+  layout: {
+    isRTL: false, // Boolean
+    ...
+  }
+}
+export default themeConfig
+```
+
+### Changing Layout
+
+<p>
+  Customize your much of your layout using in <code>themeConfig.js</code> valid values are already listed besides the
+  properties:
+</p>
+
+```js
+//Template config options
+const themeConfig = {
+  app: {
+    appName: 'Vuexy',
+    appLogoImage: require('@src/assets/images/logo/logo.svg').default
+  },
+  layout: {
+    isRTL: false,
+    skin: 'light', // light, dark, bordered, semi-dark
+    type: 'vertical', // vertical, horizontal
+    contentWidth: 'boxed', // full, boxed
+    menu: {
+      isHidden: false,
+      isCollapsed: false
+    },
+    navbar: {
+      // ? For horizontal menu, navbar type will work for navMenu type
+      type: 'floating', // static , sticky , floating, hidden
+      backgroundColor: 'white' // BS color options [primary, success, etc]
+    },
+    footer: {
+      type: 'static' // static, sticky, hidden
+    },
+    customizer: true,
+    scrollTop: true, // Enable scroll to top button
+    toastPosition: 'top-right' // top-left, top-center, top-right, bottom-left, bottom-center, bottom-right
+  }
+}
+
+export default themeConfig
+```
+
+### Accessing theme colors in JS files
+
+---
+
+<p>
+  We've created a ThemeColors context to make it accessible in every component. You can use <code>useContext</code> hook
+  to get <code>themeColors</code> object anywhere in your app. You can find Theme Context in{' '}
+  <code>src/utility/context/ThemeColors</code>
+</p>
+
+<p>Usage Example:</p>
+
+```jsx
+import { useContext } from 'react'
+import { ThemeColors } from '@src/utility/context/ThemeColors'
+
+const { colors } = useContext(ThemeColors)
+
+console.log(colors)
+```
+
+### Changing theme colors
+
+---
+
+<p>
+  To update template colors just update bootstrap color variables in:{' '}
+  <code>src/assets/scss/variables/_variables.scss</code>
+</p>
+
+```scss title="_variables.scss"
+$primary: #00cfe8; // Changing primary color
+```
+
+### Changing Font Family
+
+---
+
+<p>
+  First, replace our font-family url with yours in <code>public/index.html</code>
+</p>
+
+<img className='rounded border my-3' src={useBaseUrl('img/font-family.jpg')} />
+
+<p>
+  To apply the font family just update following variables in: <code>src/assets/scss/variables/_variables.scss</code>
+</p>
+
+```scss title="_variables.scss"
+$font-family-sans-serif: 'Montserrat', Helvetica, Arial, serif !default;
+$font-family-monospace: 'Montserrat', Helvetica, Arial, serif !default;
+```

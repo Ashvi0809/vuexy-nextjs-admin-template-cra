@@ -1,0 +1,128 @@
+---
+id: redux
+title: Redux
+sidebar_label: Redux
+slug: /development/redux
+---
+
+<p>On this page we will explain the usage of Redux in Vuexy React</p>
+
+### Overview
+
+---
+
+<p>
+  Our template uses <a href='https://redux-toolkit.js.org/'>redux-toolkit</a> to bind the react with redux. Store
+  configurations are located in <code>@src/redux/store.js</code>.
+</p>
+
+<p>
+  The globally used <code>slices</code> are in <code>@src/redux</code>.
+</p>
+
+<p>
+  The Component specific <code>slices</code> are located in the <code>@src/view/</code> folder. Refer{' '}
+  <code>@src/views/apps/email/store/index.js</code> as reference.
+</p>
+
+### Store Slices
+
+---
+
+<ul className='pl-3'>
+  <li>
+    <strong>layout</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is common and you can say general app state. This module handles the whole app state. You can find
+  its slice in: <code>src/redux/layout.js</code>
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>auth</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app authentication. You can find its slice in: <code>src/redux/auth.js</code>
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>navbar</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app navbar search & bookmarks functions. You can find its slice in:{' '}
+  <code>src/redux/navbar.js</code>
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>calendar</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app calendar. You can find its slice in:{' '}
+  <code>src/views/apps/calendar/store/index.js</code> it contains actions for fetching & updating data.
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>chat</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app chat. You can find its slice in: <code>src/views/apps/chat/store/index.js</code> it
+  contains actions for fetching & updating data.
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>ecommerce</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app ecommerce. You can find its slice in:{' '}
+  <code>src/views/apps/ecommerce/store/index.js</code> it contains actions for fetching & updating data.
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>invoice</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app invoice. You can find its slice in:{' '}
+  <code>src/views/apps/invoice/store/index.js</code> it contains actions for fetching & updating data.
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>todo</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app todo. You can find slice actions in: <code>src/views/apps/todo/store/index.js</code>{' '}
+  it contains actions for fetching & updating data.
+</p>
+
+<ul className='pl-3'>
+  <li>
+    <strong>users</strong>
+  </li>
+</ul>
+
+<p>
+  This store module is handles app users. You can find its slice in: <code>src/views/apps/users/store/index.js</code> it
+  contains actions for fetching & updating data.
+</p>

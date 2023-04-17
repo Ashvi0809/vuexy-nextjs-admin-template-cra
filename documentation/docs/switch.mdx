@@ -1,0 +1,176 @@
+---
+id: switch
+title: Switch
+sidebar_label: Switch
+slug: /forms/switch
+---
+
+import useBaseUrl from '@docusaurus/useBaseUrl'
+
+<p>Switch component supports icon and custom colors to make it more informative</p>
+
+### Colors
+
+---
+
+<p>
+  Use class <code>.form-check-[color]</code> to change switch's color
+</p>
+
+```jsx
+<div className='demo-inline-spacing'>
+  <div className='d-flex flex-column'>
+    <Label for='switch-primary' className='form-check-label mb-50'>
+      Primary
+    </Label>
+    <div className='form-switch form-check-primary'>
+      <Input type='switch' id='switch-primary' name='primary' defaultChecked />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='switch-secondary' className='form-check-label mb-50'>
+      Secondary
+    </Label>
+    <div className='form-switch form-check-secondary'>
+      <Input type='switch' id='switch-secondary' name='secondary' defaultChecked />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='switch-success' className='form-check-label mb-50'>
+      Success
+    </Label>
+    <div className='form-switch form-check-success'>
+      <Input type='switch' id='switch-success' name='success' defaultChecked />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='switch-danger' className='form-check-label mb-50'>
+      Danger
+    </Label>
+    <div className='form-switch form-check-danger'>
+      <Input type='switch' id='switch-danger' name='danger' defaultChecked />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='switch-warning' className='form-check-label mb-50'>
+      Warning
+    </Label>
+    <div className='form-switch form-check-warning'>
+      <Input type='switch' id='switch-warning' name='warning' defaultChecked />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='switch-info' className='form-check-label mb-50'>
+      Info
+    </Label>
+    <div className='form-switch form-check-info'>
+      <Input type='switch' id='switch-info' name='info' defaultChecked />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='switch-dark' className='form-check-label mb-50'>
+      Dark
+    </Label>
+    <div className='form-switch form-check-dark'>
+      <Input type='switch' id='switch-dark' name='dark' defaultChecked />
+    </div>
+  </div>
+</div>
+```
+
+<p className='my-4'>Result</p>
+
+<img className='rounded border mb-5' src={useBaseUrl('img/switch-colors.jpg')} />
+
+### Icons
+
+---
+
+<p>
+  Use class <code>.switch-icon-left</code> & <code>.switch-icon-right</code> as label to create a switch with icon.
+</p>
+
+```jsx
+const CustomLabel = ({ htmlFor }) => {
+  return (
+    <Label className='form-check-label' htmlFor={htmlFor}>
+      <span className='switch-icon-left'>
+        <Check size={14} />
+      </span>
+      <span className='switch-icon-right'>
+        <X size={14} />
+      </span>
+    </Label>
+  )
+}
+
+;<div className='demo-inline-spacing'>
+  <div className='d-flex flex-column'>
+    <Label for='icon-primary' className='form-check-label mb-50'>
+      Primary
+    </Label>
+    <div className='form-switch form-check-primary'>
+      <Input type='switch' defaultChecked id='icon-primary' name='icon-primary' />
+      <CustomLabel htmlFor='icon-primary' />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='icon-secondary' className='form-check-label mb-50'>
+      Secondary
+    </Label>
+    <div className='form-switch form-check-secondary'>
+      <Input type='switch' defaultChecked id='icon-secondary' name='icon-secondary' />
+      <CustomLabel htmlFor='icon-secondary' />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='icon-success' className='form-check-label mb-50'>
+      Success
+    </Label>
+    <div className='form-switch form-check-success'>
+      <Input type='switch' defaultChecked id='icon-success' name='icon-success' />
+      <CustomLabel htmlFor='icon-success' />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='icon-danger' className='form-check-label mb-50'>
+      Danger
+    </Label>
+    <div className='form-switch form-check-danger'>
+      <Input type='switch' defaultChecked id='icon-danger' name='icon-danger' />
+      <CustomLabel htmlFor='icon-danger' />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='icon-warning' className='form-check-label mb-50'>
+      Warning
+    </Label>
+    <div className='form-switch form-check-warning'>
+      <Input type='switch' defaultChecked id='icon-warning' name='icon-warning' />
+      <CustomLabel htmlFor='icon-warning' />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='icon-info' className='form-check-label mb-50'>
+      Info
+    </Label>
+    <div className='form-switch form-check-info'>
+      <Input type='switch' defaultChecked id='icon-info' name='icon-info' />
+      <CustomLabel htmlFor='icon-info' />
+    </div>
+  </div>
+  <div className='d-flex flex-column'>
+    <Label for='icon-dark' className='form-check-label mb-50'>
+      Dark
+    </Label>
+    <div className='form-switch form-check-dark'>
+      <Input type='switch' defaultChecked id='icon-dark' name='icon-dark' />
+      <CustomLabel htmlFor='icon-dark' />
+    </div>
+  </div>
+</div>
+```
+
+<p className='my-4'>Result</p>
+
+<img className='rounded border' src={useBaseUrl('img/switch-icons.png')} />

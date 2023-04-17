@@ -1,0 +1,78 @@
+---
+id: craco
+title: Craco
+sidebar_label: Craco
+slug: /development/craco
+---
+
+<p>
+  We've integrated{' '}
+  <a href='https://github.com/gsoft-inc/craco' target='_blank'>
+    craco
+  </a>{' '}
+  to make it easier for you to add <strong>webpack configurations</strong> without ejecting.
+</p>
+
+<p>
+  Use file <code>craco.config.js</code> found in the root` to add your own configurations.
+</p>
+
+### postcss-rtl
+
+---
+
+<p>
+  We've used <code>postcss-rtl</code> with craco to add RTL support in the template.
+</p>
+
+```js
+style: {
+  postcss: {
+    plugins: [require('postcss-rtl')()]
+  }
+}
+```
+
+### Sass include paths
+
+---
+
+<p>
+  We've used <code>sassOptions</code> property to add include paths for scss.
+</p>
+
+```js
+style: {
+  sass: {
+    loaderOptions: {
+      sassOptions: {
+        includePaths: ['node_modules', 'src/assets']
+      }
+    }
+  }
+}
+```
+
+### Aliases
+
+---
+
+<p>
+  We've used <code>alias</code> to add path aliases so you don't have to navigate the 4 folders to import a component.
+</p>
+
+```js
+webpack: {
+    alias: {
+      '@src': path.resolve(__dirname, 'src'),
+      '@assets': path.resolve(__dirname, 'src/@core/assets'),
+      '@components': path.resolve(__dirname, 'src/@core/components'),
+      '@layouts': path.resolve(__dirname, 'src/@core/layouts'),
+      '@store': path.resolve(__dirname, 'src/redux'),
+      '@styles': path.resolve(__dirname, 'src/@core/scss'),
+      '@configs': path.resolve(__dirname, 'src/configs'),
+      '@utils': path.resolve(__dirname, 'src/utility/Utils'),
+      '@hooks': path.resolve(__dirname, 'src/utility/hooks')
+    }
+}
+```

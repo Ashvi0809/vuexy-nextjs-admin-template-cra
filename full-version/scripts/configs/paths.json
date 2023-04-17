@@ -1,0 +1,9 @@
+{
+  "docsPath": "../../../documentation",
+  "fullVersionPath": "../../",
+  "demoConfigsPath": "../../demo-configs",
+  "demoURL": "/vuexy-react-admin-dashboard-template",
+  "starterKitPath": "../../../starter-kit",
+  "packagePath": "../../../package",
+  "docsURL": "/vuexy-react-admin-dashboard-template/documentation"
+}
