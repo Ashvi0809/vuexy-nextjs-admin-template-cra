@@ -25,7 +25,7 @@ const AddVariation = () => {
   //Get Api
   const [category, setCategoy] = useState([])
 
-  const getCategory = async () => {
+  const getVariation = async () => {
     try {
       return await axios.get('http://localhost:5005/api/v6/getVariation').then(res => {
         setCategoy(res.data)
@@ -35,9 +35,9 @@ const AddVariation = () => {
     }
   }
   useEffect(() => {
-    getCategory()
+    getVariation()
   }, [])
-  const createCategory = async data => {
+  const createVariation = async data => {
     console.log('-----', data)
     return await axios.post('http://localhost:5005/api/v6/addVariation', data, {
       headers: {
@@ -65,17 +65,17 @@ const AddVariation = () => {
         .then(res => {
           toast.success('Category updated Successfully.')
           console.log('--------', res.data)
-          getCategory()
+          getVariation()
         })
         .catch(err => {
           toast.error(err.response?.data?.message || 'updated Something went wrong!')
         })
     } else {
-      createCategory(formData)
+      createVariation(formData)
         .then(res => {
           toast.success('Category added Successfully.')
           console.log('--------', res.data)
-          getCategory()
+          getVariation()
         })
         .catch(err => {
           toast.error(err.response?.data?.message || 'Something went wrong!')
@@ -83,7 +83,7 @@ const AddVariation = () => {
     }
   }
 
-  const getOneCategory = async id => {
+  const getOneVariation = async id => {
     try {
       return axios.get(`http://localhost:5005/api/v6/${id}`).then(res => {
         setGetOne(res.data)
@@ -94,13 +94,13 @@ const AddVariation = () => {
   }
   //Delete api
 
-  const deleteCategory = async id => {
+  const deleteVariation = async id => {
     try {
       return axios.delete(`http://localhost:5005/api/v6/${id}`).then(res => {
         console.log(res)
         if (res.status === 200) {
           console.log('done')
-          getCategory()
+          getVariation()
         }
       })
     } catch (err) {
@@ -173,10 +173,10 @@ const AddVariation = () => {
                       <td>{doc.id}</td>
                       <td>{doc.name}</td>
                       <td>
-                        <Button className='me-1' color='primary' type='reset' onClick={() => getOneCategory(doc.id)}>
+                        <Button className='me-1' color='primary' type='reset' onClick={() => getOneVariation(doc.id)}>
                           EDIT
                         </Button>
-                        <Button color='primary' type='submit' onClick={() => deleteCategory(doc.id)}>
+                        <Button color='primary' type='submit' onClick={() => deleteVariation(doc.id)}>
                           DELETE
                         </Button>
                       </td>

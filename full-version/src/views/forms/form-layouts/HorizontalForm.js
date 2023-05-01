@@ -42,6 +42,7 @@ const AddProduct = () => {
     formData.append('title', rawData.title)
     formData.append('price', rawData.price)
     formData.append('category_id', rawData.categoryName.value)
+    formData.append('item_stock', rawData.item_stock)
     formData.append('variation_id', JSON.stringify(pro_var))
     formData.append('variationOption_id', JSON.stringify(option))
     formData.append('short_description', rawData.short_description)
@@ -71,6 +72,7 @@ const AddProduct = () => {
   // setData(data)
 
   const { ref: refTitle, ...restTitle } = register('title')
+  const { ref: refitem_stock, ...restitem_stock } = register('item_stock')
   const { ref: refPrice, ...restPrice } = register('price')
   const { ref: refShortDescription, ...restShortDescription } = register('short_description')
   const { ref: refLongDescription, ...restLongDescription } = register('long_description')
@@ -188,12 +190,25 @@ const AddProduct = () => {
               {errors && errors.title && <FormFeedback>{errors.title.message}</FormFeedback>}
             </Col>
             <Col md='6' sm='12' className='mb-1'>
+              <Label>Stock</Label>
+              <Input
+                id='title'
+                name='item_stock'
+                type='text'
+                placeholder='Stock'
+                invalid={errors.title && true}
+                {...restitem_stock}
+                innerRef={refitem_stock}
+              />
+              {errors && errors.title && <FormFeedback>{errors.title.message}</FormFeedback>}
+            </Col>
+            <Col md='6' sm='12' className='mb-1'>
               <Label>Price</Label>
               <Input
                 id='price'
                 name='price'
                 type='text'
-                placeholder='Price'
+                placeholder='item_stock'
                 invalid={errors.price && true}
                 {...restPrice}
                 innerRef={refPrice}
@@ -201,7 +216,7 @@ const AddProduct = () => {
               {errors && errors.price && <FormFeedback>{errors.price.message}</FormFeedback>}
             </Col>
             <Col md='6' sm='12' className='mb-1'>
-              <Label>Category Name</Label>
+              <Label>Category </Label>
               <Controller
                 id='categoryName'
                 control={control}

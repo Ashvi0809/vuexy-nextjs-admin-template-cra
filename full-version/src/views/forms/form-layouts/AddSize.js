@@ -1,8 +1,10 @@
 // ** Reactstrap Imports
 
 import { Table, CardHeader, CardTitle, CardBody, Label, Input, Button, Form, Row, Col, Card } from 'reactstrap'
-
-import { useForm } from 'react-hook-form'
+import Select from 'react-select'
+import classnames from 'classnames'
+import { useForm, Controller } from 'react-hook-form'
+import { selectThemeColors } from '@utils'
 // import { useParams } from 'react-router-dom'
 // import TextareaCounter from '../form-elements/textarea/TextareaCounter'
 import toast from 'react-hot-toast'
@@ -15,19 +17,19 @@ const AddOption = () => {
   console.log(getOne?.id, '----------')
   const {
     reset,
-    // control,
+    control,
     register,
-    handleSubmit
-    // formState: { errors }
+    handleSubmit,
+    formState: { errors }
   } = useForm({ mode: 'onChange' })
-  const { ref: refName, ...restName } = register('category_name')
+  const { ref: refName, ...restName } = register('value')
 
   //Get Api
   const [category, setCategoy] = useState([])
 
-  const getCategory = async () => {
+  const getOption = async () => {
     try {
-      return await axios.get('http://localhost:5005/api/v2/getCategory').then(res => {
+      return await axios.get('http://localhost:5005/api/v7/getVariation_option').then(res => {
         setCategoy(res.data)
       })
     } catch (error) {
@@ -35,18 +37,17 @@ const AddOption = () => {
     }
   }
   useEffect(() => {
-    getCategory()
+    getOption()
   }, [])
-  const createCategory = async data => {
-    console.log('-----', data)
-    return await axios.post('http://localhost:5005/api/v2/addCategory', data, {
+  const createOption = async data => {
+    return await axios.post('http://localhost:5005/api/v7/addVariation_option', data, {
       headers: {
         'Content-Type': 'application/json'
       }
     })
   }
   const addUpdatedData = async (data, id) => {
-    return axios.put(`http://localhost:5005/api/v2/${id}`, data, {
+    return axios.put(`http://localhost:5005/api/v7/${id}`, data, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -54,9 +55,9 @@ const AddOption = () => {
   }
 
   const submit = rawData => {
-    console.log(rawData)
     const formData = {
-      category_name: rawData.category_name
+      variation_id: rawData.variation_id.value,
+      value: rawData.value
     }
     console.log('formData', formData)
     //api
@@ -65,17 +66,17 @@ const AddOption = () => {
         .then(res => {
           toast.success('Category updated Successfully.')
           console.log('--------', res.data)
-          getCategory()
+          getOption()
         })
         .catch(err => {
           toast.error(err.response?.data?.message || 'updated Something went wrong!')
         })
     } else {
-      createCategory(formData)
+      createOption(formData)
         .then(res => {
           toast.success('Category added Successfully.')
           console.log('--------', res.data)
-          getCategory()
+          getOption()
         })
         .catch(err => {
           toast.error(err.response?.data?.message || 'Something went wrong!')
@@ -83,9 +84,9 @@ const AddOption = () => {
     }
   }
 
-  const getOneCategory = async id => {
+  const getOneOption = async id => {
     try {
-      return axios.get(`http://localhost:5005/api/v2/${id}`).then(res => {
+      return axios.get(`http://localhost:5005/api/v7/${id}`).then(res => {
         setGetOne(res.data)
       })
     } catch (err) {
@@ -94,48 +95,105 @@ const AddOption = () => {
   }
   //Delete api
 
-  const deleteCategory = async id => {
+  const deleteOption = async id => {
     try {
-      return axios.delete(`http://localhost:5005/api/v2/${id}`).then(res => {
+      return axios.delete(`http://localhost:5005/api/v7/${id}`).then(res => {
         console.log(res)
         if (res.status === 200) {
           console.log('done')
-          getCategory()
+          getOption()
         }
       })
     } catch (err) {
       console.log('error in  delete api ', err)
     }
   }
+  const [variationOptionData, setVariationOptionData] = useState([])
+  const getVariationData = async () => {
+    return await axios
+      .get('http://localhost:5005/api/v6/getVariation', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        const options = []
+        res.data.map(row => {
+          options.push({ value: row.id, label: row.name })
+        })
+        setVariationOptionData(options)
+      })
+      .catch(err => {
+        toast.error(err.response?.data?.message || 'Something went wrong!')
+      })
+  }
+  useEffect(() => {
+    getVariationData()
+  }, [])
   //
   //reset
   const handleReset = () => {
     reset({
-      category_name: ''
+      value: ''
     })
   }
   return (
     <Card>
       <CardHeader>
         <CardTitle tag='h1'>
-          <h2>Add Product Categories</h2>
+          <h2>Variation Option</h2>
         </CardTitle>
       </CardHeader>
       <CardBody>
         <Form onSubmit={handleSubmit(submit)}>
           <Row className='mb-1'>
+            <Col sm='12' className='mb-1'>
+              <Label>
+                <h5>Variation</h5>
+              </Label>
+              <Controller
+                id='variation_id'
+                control={control}
+                name='variation_id'
+                render={({ field }) => (
+                  <Select
+                    isClearable
+                    classNamePrefix='select'
+                    placeholder={'Select Variation'}
+                    options={variationOptionData}
+                    theme={selectThemeColors}
+                    className={classnames('react-select', {
+                      'is-invalid':
+                        errors.variationName?.message ||
+                        errors.variationName?.label.message ||
+                        errors.variationName?.value.message
+                    })}
+                    {...field}
+                  />
+                )}
+              />
+
+              {errors && errors.variationName && (
+                <FormFeedback>
+                  {errors.variationName?.message ||
+                    errors.variationName?.label.message ||
+                    errors.variationName?.value.message}
+                </FormFeedback>
+              )}
+            </Col>
+
             <Label sm='3' for='name'>
-              <h5>Add Option</h5>
+              <h5>Add Value</h5>
             </Label>
-            <Col sm='9'>
+            <Col sm='12'>
               <Input
                 type='text'
-                name='category_name'
-                id='name'
-                placeholder='category_name'
+                name='value'
+                id='value'
+                placeholder='value'
                 {...restName}
                 innerRef={refName}
-                defaultValue={getOne.category_name}
+                defaultValue={getOne.value}
               />
             </Col>
           </Row>
@@ -158,7 +216,8 @@ const AddOption = () => {
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>Categories</th>
+                  <th>Value</th>
+                  <th>variation option</th>
                   <th></th>
                 </tr>
               </thead>
@@ -171,12 +230,13 @@ const AddOption = () => {
                   return (
                     <tr>
                       <td>{doc.id}</td>
-                      <td>{doc.category_name}</td>
+                      <td>{doc.value}</td>
+                      <td>{doc.variation_id}</td>
                       <td>
-                        <Button className='me-1' color='primary' type='reset' onClick={() => getOneCategory(doc.id)}>
+                        <Button className='me-1' color='primary' type='reset' onClick={() => getOneOption(doc.id)}>
                           EDIT
                         </Button>
-                        <Button color='primary' type='submit' onClick={() => deleteCategory(doc.id)}>
+                        <Button color='primary' type='submit' onClick={() => deleteOption(doc.id)}>
                           DELETE
                         </Button>
                       </td>

@@ -104,7 +104,7 @@ const CustomHeader = ({ store, toggleSidebar, handlePerPage, rowsPerPage, handle
               <option value='25'>25</option>
               <option value='50'>50</option>
             </Input>
-            <label htmlFor='rows-per-page'>Entries</label>
+            <label htmlFor='rows-per-page'> </label>
           </div>
         </Col>
         <Col
